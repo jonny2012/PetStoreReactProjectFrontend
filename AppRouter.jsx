@@ -8,7 +8,7 @@ const AppRouter = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="home" element={<div>Home</div>} />
-          <Route path="categories" element={<div>Catigories</div>} />
+          <Route path="categories" element={<div>Categories</div>} />
           <Route path="categories/:categoryId" element={<Category />} />
           <Route path="products/:productId" element={<div>Products</div>} />
           <Route path="*" element={<div>Not Found</div>} />

@@ -1,12 +1,12 @@
-import { Footer } from "antd/es/layout/layout";
-import { Outlet } from "react-router-dom";
+import Category from "./category/Category";
+
 
 const Layout = () => {
   return (
     <div>
       <h1>Header</h1>
       <main>
-        <Outlet />
+        <Category/>
       </main>
       <h1>Footer</h1>
     </div>
