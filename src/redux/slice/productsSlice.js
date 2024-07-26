@@ -1,18 +1,19 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios';
 
+const API_PRODUCTS_URL = 'http://localhost:3333/products';
 
-const API_URL = 'http://localhost:3333/categories';
 
-export const allCategories = createAsyncThunk(
-    'categories/all',
+export const productsAll = createAsyncThunk(
+    'products/all',
+
     async (
         _,
         thunkApi
     ) => {
         try {
-            const response = await axios.get(`${API_URL}/all`);
-            console.log(response.data);
+            const response = await axios.get(`${API_PRODUCTS_URL}/all`);
+            
             return response.data;
         } catch (error) {
             const message = error.response.data.message;
@@ -20,19 +21,17 @@ export const allCategories = createAsyncThunk(
         }
     }
 );
+export const productById= createAsyncThunk(
+    'products/id',
 
-
-export const categoryById = createAsyncThunk(
-    'categories/id',
     async (
-        categoryId,
+        id,
         thunkApi
     ) => {
         try {
-            const response = await axios.get(`${API_URL}/${categoryId}`);
-          
-            console.log(`${API_URL}/${categoryId}`)
-            return response.data;
+            const response = await axios.get(`${API_PRODUCTS_URL}/${id}`);
+                console.log(response.data.product[0])
+            return response.data.product[0] ;
         } catch (error) {
             const message = error.response.data.message;
             return thunkApi.rejectWithValue({ message });
@@ -40,11 +39,12 @@ export const categoryById = createAsyncThunk(
     }
 );
 
-const categoriesSlice = createSlice({
-    name: 'category',
-    initialState: {
-        categories: [],
-        categoryData: [],
+
+const productSlice = createSlice({
+    name: 'product',
+    initialState: { 
+        productsData: null,
+        productData:[],
         isLoading: false,
         isError: false,
         isSuccess: false,
@@ -54,33 +54,34 @@ const categoriesSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(allCategories.pending, (state) => {
+            .addCase(productsAll.pending, (state) => {
                 state.isLoading = true;
             })
-            .addCase(allCategories.fulfilled, (state, action) => {
+            .addCase(productsAll.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.isSuccess = true;
-                state.categories = action.payload;
+                state.productsData = action.payload;
             })
-            .addCase(allCategories.rejected, (state, action) => {
+            .addCase(productsAll.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
                 state.message = action.payload.message;
             })
-            .addCase(categoryById.pending, (state) => {
+            .addCase(productById.pending, (state) => {
                 state.isLoading = true;
             })
-            .addCase(categoryById.fulfilled, (state, action) => {
+            .addCase(productById.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.isSuccess = true;
-                state.categoryData = action.payload;
+                state.productData = action.payload;
             })
-            .addCase(categoryById.rejected, (state, action) => {
+            .addCase(productById.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
                 state.message = action.payload.message;
-            });
+            })
+    
     },
 });
 
-export default categoriesSlice.reducer;
+export default productSlice.reducer;

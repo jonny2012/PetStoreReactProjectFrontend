@@ -1,16 +1,24 @@
-import Category from "./category/Category";
+import Checkout from "../components/checkout/Checkout";
+import MainCategories from "../components/main_categories/MainCategories";
+import Discount from "../components/discount/Discount";
+import MainSale from "../components/main_Sales/MainSale";
+
+
 
 
 const Layout = () => {
+
   return (
-    <div>
-      <h1>Header</h1>
-      <main>
-        <Category/>
+    <>
+      <Checkout/>
+      <main   style={{padding: "80px 0", width: "100vw"}} >
+    <MainCategories />
+    <Discount/>
+    <MainSale/>
+
       </main>
-      <h1>Footer</h1>
-    </div>
-  );
+    </>
+);
 };
 
 export default Layout;
