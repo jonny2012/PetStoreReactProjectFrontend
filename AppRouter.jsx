@@ -1,27 +1,20 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./src/pages/Layout";
-import Category from "./src/pages/category/CategoryProducts";
-import Header from "./src/components/header/Header";
-import Categories from "./src/pages/categories/Categories";
+import Category from "./src/pages/Category/CategoryProducts";
+import Header from "./src/components/Header/Header";
+import Categories from "./src/pages/Categories/Categories";
 import Sales from "./src/pages/Sales/Sale";
 import AllProducts from "./src/pages/Products/AllProducts";
 import ProductPage from "./src/pages/ProductPage/ProductPage";
-import Footer from "./src/components/footer/Footer";
-import Basket from "./src/pages/shoppingBasket/Basket";
-import { useState } from "react";
+import Footer from "./src/components/Footer/Footer";
+import ProductBasket from "./src/pages/shoppingBasket/ProductsBasket";
+import ErrorPage from "./src/pages/ErrorPage/ErrorPage";
 
 
 
 
 const AppRouter = () => {
-  const [data, setData] = useState({
-    image: "",
-    title:"",
-    price: null,
-    discont_price:null,
-    discont_percent:""
 
-  })
 
   return (
 
@@ -34,9 +27,9 @@ const AppRouter = () => {
           <Route path="/categories/:categoryId" element={<Category/>} />
           <Route path="/products/all" element={<AllProducts/>} />
           <Route path="/sales/all" element={<Sales />} />
-          <Route path="*" element={<div>Not Found</div>} />
+          <Route path="*" element={<ErrorPage/>} />
           <Route path="/products/:id" element={<ProductPage />} />
-          <Route path="/shoppingbasket" element={<Basket/>}/>
+          <Route path="/shoppingbasket" element={<ProductBasket/>}/>
       </Routes>
       <Footer/>
     </BrowserRouter>

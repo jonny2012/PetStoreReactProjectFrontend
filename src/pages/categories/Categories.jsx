@@ -4,10 +4,13 @@ import { allCategories } from "../../redux/slice/categoriesSlice.js";
 import { Box, Typography, CircularProgress} from "@mui/material";
 import { Link } from "react-router-dom";
 import PagesLinks from "../../components/PagesLinks.jsx";
-
-
+import { useTheme } from "@emotion/react";
+import {useMediaQuery} from "@mui/material";
 const Categories = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
+  const theme = useTheme();
+  const isTablet = useMediaQuery(theme.breakpoints.down('md'));
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   useEffect(() => {
     dispatch(allCategories());
@@ -45,7 +48,7 @@ const Categories = () => {
 
         
       }}>
-        <Typography fontWeight="700" fontSize="64px" marginLeft="40px" variant="h2">Categories</Typography>
+        <Typography  fontWeight="700" fontSize={isMobile ? "30px":"64px" && isTablet ? "48px":"64px" }marginLeft="40px" >Categories</Typography>
       </Box>
       <Box sx={{
 

@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { allSales } from "../../redux/slice/SalesSlice";
+import { Link } from "react-router-dom";
 
 const MainSale = () => {
   const dispatch = useDispatch()
@@ -28,8 +29,17 @@ const MainSale = () => {
     <Box sx={{
       padding: "40px 40px"
 
-    }}> <Typography variant="h2" fontWeight="600" paddingBottom="40px">Sales</Typography>
+    }}>     <Box sx={{
+      maxWidth: "100%",
+      paddingBottom:"40px",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between"
+    }}>
+      <Typography variant="h2" fontSize="60px" fontWeight="700" >Sales</Typography>
 
+      <Link style={{marginRight:"40px"}} to="/categories" >All Sales</Link>
+    </Box>
       <ProductsContainer Products={Products} isLoading={isLoading} isError={isError} />
 
     </Box>

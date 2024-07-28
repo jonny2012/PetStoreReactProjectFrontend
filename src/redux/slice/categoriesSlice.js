@@ -12,7 +12,7 @@ export const allCategories = createAsyncThunk(
     ) => {
         try {
             const response = await axios.get(`${API_URL}/all`);
-            console.log(response.data);
+        
             return response.data;
         } catch (error) {
             const message = error.response.data.message;
@@ -31,7 +31,6 @@ export const categoryById = createAsyncThunk(
         try {
             const response = await axios.get(`${API_URL}/${categoryId}`);
           
-            console.log(`${API_URL}/${categoryId}`)
             return response.data;
         } catch (error) {
             const message = error.response.data.message;

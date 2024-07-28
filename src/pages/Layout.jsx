@@ -1,7 +1,7 @@
-import Checkout from "../components/checkout/Checkout";
-import MainCategories from "../components/main_categories/MainCategories";
-import Discount from "../components/discount/Discount";
-import MainSale from "../components/main_Sales/MainSale";
+import Checkout from "../components/Checkout/Checkout";
+import MainCategories from "../components/Main_categories/MainCategories";
+import Discount from "./../components/Discount/Discount"
+import MainSale from "../components/Main_Sales/MainSale";
 
 
 

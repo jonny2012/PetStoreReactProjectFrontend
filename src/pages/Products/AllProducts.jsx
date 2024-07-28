@@ -6,12 +6,14 @@ import Sorting from "../../components/Sorting";
 import ProductsContainer from "../../components/ProductsContainer/ProductsContainer";
 import { useState } from "react";
 import PagesLinks from "../../components/PagesLinks";
-
+import { useTheme } from "@emotion/react";
+import {useMediaQuery} from "@mui/material";
 const AllProducts = () => {
   const dispatch = useDispatch();
-
+const theme = useTheme()
   const [filteredProducts, setFilteredProducts] = useState([]);
-
+  const isTablet = useMediaQuery(theme.breakpoints.down('md'));
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const { productsData, isLoading, isError, message } = useSelector(
     (state) => state.products
@@ -56,7 +58,7 @@ const AllProducts = () => {
 
     <Box maxWidth="false" >
 <PagesLinks links={Links}/>
-      <Typography variant="h2" fontSize="64px" paddingLeft="30px" fontWeight="700">All Products</Typography>
+      <Typography variant="h2" fontSize={isMobile ? "30px":"64px" && isTablet ? "48px":"64px"} paddingLeft="30px" fontWeight="700" >All Products</Typography>
  <Sorting  Products={Products} display_checkbox={checkbox} setFilteredProducts={setFilteredProducts} filteredProducts={filteredProducts}/>
 
       <ProductsContainer Products={filteredProducts} isLoading={isLoading} isError={isError} />

@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { allCategories } from "../../redux/slice/categoriesSlice.js";
 import { Box, Typography, Button } from "@mui/material";
 import { Link } from "react-router-dom";
+import { useTheme } from "@emotion/react"
+import { useMediaQuery } from "@mui/material"
 
 const MainCategories = () => {
   const dispatch = useDispatch();
@@ -10,7 +12,10 @@ const MainCategories = () => {
   useEffect(() => {
     dispatch(allCategories());
   }, [dispatch]);
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
+  const isTablet = useMediaQuery(theme.breakpoints.down('md'));
   const { categories, isLoading, isError, message } = useSelector(
     (state) => state.categories
   );
@@ -40,9 +45,9 @@ const MainCategories = () => {
         alignItems: "center",
         justifyContent: "space-between"
       }}>
-        <Typography variant="h2" fontSize="60px" fontWeight="700" >Categories</Typography>
+        <Typography variant="h2" fontSize={isTablet? "28px":"64"} fontWeight="700" >Categories</Typography>
 
-        <Link to="/categories" >All categories</Link>
+        <Link style={{marginRight:"40px"}} to="/categories" >All categories</Link>
       </Box>
       <Box sx={{
         width: "100%",

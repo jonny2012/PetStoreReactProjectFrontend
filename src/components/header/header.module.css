@@ -9,3 +9,8 @@
 a:active{
     color: #0d48db;
 }
+
+.link:hover{
+    color: #0d48db;
+}
+
